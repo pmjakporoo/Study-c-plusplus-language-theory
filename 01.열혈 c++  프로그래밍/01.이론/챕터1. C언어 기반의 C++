@@ -116,4 +116,15 @@
   namespace ABC = AAA::BBB::CCC;
   ABC::num = 60;
 
+- 지역번수의 이름이 전역변수의 이름과 같을 경우, 전역변수는 지역변수에 가려진다. 이럴 떄, 전역변수에 접근하려면 
+  범위지정 연산자 ::를 사용하면 된다.
+
+  예시)
+  int val = 100;
+
+  void SimpleFunc(void) {
+    int val = 20;
+    val += 3; // 지역변수 val에 접근
+    ::val += 7; // 전역변수 val에 접근
+  }
 
