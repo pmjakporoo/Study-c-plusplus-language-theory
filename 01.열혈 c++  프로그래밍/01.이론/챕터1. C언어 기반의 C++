@@ -80,3 +80,21 @@
   - 다른 공간에 존재하는 각각의 A는 구분이 된다. 왜냐하면 공간이 다르기 때문이다. 
   - ::연산자를 범위 지정 연산자라고 하며, 이름공간을 지정할 때 사용하는 연산자이다. 
   - 동일한 이름공간에 정의된 함수를 호출할 때에는 이름공간을 명시할 필요가 없다.
+  - 이름공간 안에 다른 이름공간이 삽입될 수 있다. 
+
+    이름공간 중첩의 예)
+    namespace Parent {
+      int num = 2;
+      namespace SubOne {
+        int num =3;
+      }
+      namespace SubTwo {
+        int num = 4;
+      }
+    }
+
+    위의 코드에서 num이 총 3개가 존재하는데, 각각이 선언된 이름공간이 다르기 떄문에 이름충돌 문제가 발생하지 않는다. 
+    각각의 num에 접근하려면?
+      std::cout << Parent::num << std::endl; // 2
+      std::cout << Parent::SubOne::num << std::endl; // 3
+      std::cout << Parent::SubTwo::num << std::endl; // 4
