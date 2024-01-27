@@ -1,0 +1,35 @@
+c++를 제대로 공부하려면 다음의 내용을 잘 알고 있어야 한다. 
+- 헤더파일의 의미와 정의 방법
+- 헤더파일에 삽입할 내용과 소스파일에 삽입할 내용을 구분하는 방법
+- 둘 이상의 헤더파일과 소스파일을 만들어서 하나의 실행파일로 컴파일하는 방법
+
+따라서, 
+#include <iostream>
+
+namespace BestComImp1 {
+	void SimpleFunc(void);
+}
+
+namespace ProgComImp1 {
+	void SimpleFunc(void);
+}
+
+int main(void) {
+	BestComImp1::SimpleFunc();
+	ProgComImp1::SimpleFunc();
+	return 0;
+}
+
+void BestComImp1::SimpleFunc() {	
+	std::cout << "BestCom이 정의한 함수" << std::endl;
+}
+
+void ProgComImp1::SimpleFunc() {
+	std::cout << "ProgCom이 정의한 함수" << std::endl;
+}
+
+이 코드를 
+헤더파일
+소스파일1
+소스파일2
+파일로 분할해서 컴파일 해보자.
