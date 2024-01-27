@@ -98,3 +98,9 @@
       std::cout << Parent::num << std::endl; // 2
       std::cout << Parent::SubOne::num << std::endl; // 3
       std::cout << Parent::SubTwo::num << std::endl; // 4
+
+- using을 이용한 이름공간을 명시하면 이름공간을 지정하지 않고 호출 할 수 있다.
+  - 만약 main함수 내에 선언을 했으면, 지역변수의 선언과 마찬가지로 선언된 이후부터 효력을 발휘하며,
+    선언된 지역을 벗어나면, 선언의 효력은 잃게된다. 따라서 프로그램 전체영역에 효력을 미치게 하려면
+    전역변수와 마찬가지로 함수 밖에 선언을 해야 한다. 
+    
