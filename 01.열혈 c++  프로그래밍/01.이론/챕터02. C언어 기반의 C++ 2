@@ -183,9 +183,16 @@
     int &ref = *ptr; // 힙영역에 할당된 변수에 대한 참조자 선언 
     ref = 20;
     cout << *ptr << endl // 출력 결과는 20
-
-      
-  
-  
+   
+16. c++에서 c언어의 표준 함수를 호출할 때
+  - c를 더하고 .h를 빼라.
+    #include <stdio.h>   -> #include <cstdio>
+    #include <stdlib.h>  -> #include <cstdlib>
+    #include <math.h>    -> #include <cmath>
+    #include <string.h>  -> #include <cstring>
+    -> 헤더파일의 확장자인 .h를 생략하고 앞에 c를 붙이면 c언어에 대응하는 c++의 헤더파일 이름이 된다.
+  - c의 표준에 정의된 함수들 조차 이름공간 std 안에 선언이 되어 있어서 using namespace std; 이 문장이 삽입되어야 한다. 
+  - c++ 표준 라이브러리가 제공하는 함수들과 c 표준라이브러리가 제공하는 함수들이 완전히 일치하는 것이 아니기 때문에 
+    가급적 c++의 표준 헤더를 이용해서 함수를 호출하는 것이 좋다.
 
 
