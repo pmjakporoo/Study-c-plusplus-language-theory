@@ -6,3 +6,28 @@
 - strcat : 문자열의 뒤에 덧붙이기
 - strcpy : 문자열 복사
 - strcmp : 문자열의 비교 
+
+
+---------------------------------------------------------------------------
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main(void) {
+	char str1[100];
+	char str2[100];
+	strcpy(str1, "hello world !~!~!");
+	strcpy(str2, str1);
+	strcat(str1, "~!");
+
+	cout << "str1\'s strlen : " << strlen(str1) << endl;
+	cout << "str2\'s strlen : " << strlen(str2) << endl;
+	if (strcmp(str1, str2) == 0) {
+		cout << str1 << "과 " << str2 << "는 동일한 문장입니다." << endl;
+	}
+	else {
+		cout << str1 << "과 " << str2 << "는 다른 문장입니다." << endl;
+	}
+	return 0;
+}
