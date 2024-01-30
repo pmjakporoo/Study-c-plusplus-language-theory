@@ -1,0 +1,32 @@
+다음 세 함수를 이용해서 0이상 100미만의 난수를 총 5개 생성하는 예제를 만들되, c++의 헤더를 선언해서 작성한다.
+참고로 c언어의 경우 time 함수는 <time.h>에 선언되어 있고, rand함수와 srand 함수는 <stdlib.h>에 선언되어 있다.
+
+- rand
+- srand
+- time
+-------------------------------------------------------------------
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+int main(void) {
+	srand((unsigned int)time(NULL));
+
+	for (int i = 0; i < 5; i++) {
+		int num = rand();
+		printf("난수 %d \n", num % 100);
+	}
+	
+	return 0;
+}
+
+/*
+	rand(): 프로그램이 생성될 때 딱 값이 정해짐
+	srand() : rand()에 사용될 수를 초기화 한다. 
+			rand함수는 내부적으로 어떤 srand의 매개변수로 
+			들어온 seed 값과 매칭되는 숫자가 정해진다.
+			그래서 seed 값에 의해서 rand 함수의 결과값이 변할 수 있다.
+*/
