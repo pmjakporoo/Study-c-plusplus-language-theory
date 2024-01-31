@@ -5,4 +5,11 @@
 아래의 main 함수와 실행의 예에 부합하는 Printer 클래스를 정의하되, 
 이번에도 역시 멤버변수는 private로, 멤버함수는 public으로 선언한다.
 
+int main(void) {
+  Printer pnt;
+  pnt.SetString("Hello world!");
+  pnt.ShowString();
 
+  pnt.SetString("I love C++");
+  pnt.ShowString();
+}
