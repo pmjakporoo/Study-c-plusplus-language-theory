@@ -16,5 +16,18 @@
     구조체 내에 선언된 변수에 직접 접근이 가능해졌기 때문이다.
 
   예제코드) RacingCarFuncAdd.cpp
-  
+
+3. 구조체 안에 enum 상수의 선언 
+  - RacingCarFuncAdd.cpp에 다음의 매크로 상수들이 존재한다.
+
+    #define ID_LEN		20
+    #define MAX_SPD		200
+    #define FUEL_STEP	2
+    #define ACC_STEP	10
+    #define BRK_STEP	10
+    - 이들 상수 역시 구조체 Car에게만 의미가 있는 상수들이다.
+      즉, 다른 영역에서 사용하도록 정의된 상수가 아니니, 이들 상수도 구조체 내에 포함시키는 것이 좋을 수 있다.
+      혹은 이름공간을 이용해서 상수가 사용되는 영역을 명시하는 것도 또 다른 방법이 될 수 있다.
+
+      예시코드) RacingCarEnum.cpp
 
