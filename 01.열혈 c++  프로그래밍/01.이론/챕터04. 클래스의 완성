@@ -78,9 +78,36 @@
     - 생성자도 함수의 일종이니 오버로딩이 가능하다
     - 생성자도 함수의 일종이니 매개변수에 디폴트 값을 설정할 수 있다.
 
-  - 객체생성과정에 자동으로 호출되는 생성자에게 전달할 인자의 정보를 다음과 같이 추가해야 한다.
-    SimpleClass sc(20); // 생성자에 20을 전달
-    SimpleClass * ptr = new SimpleClass(30); // 생성자에 30을 전달
+  예제코드 ) 04.Constructor1.cpp
+  - 여기에서 
+    SimpleClass(int n1 = 0, int n2 = 0) { 
+    	num1 = n1;
+    	num2 = n2;
+    }	
+    이 부분의 주석을 풀어버리면 4개의 생성자 중에 어떠한 생성자를 호출해야 할 지 애매해진다. 
+    왜냐하면 위의 생성자 코드는 나머지 생성자를 대체할 수 있는 생성자이기 때문이다.
+  - SimpleClass() {
+	    num1 = 0;
+	    num2 = 0;
+    } 이 생성자를 이용해서 객체를 생성하기 위해 다음과 같이 문장을 구성하면 안된다.
+      SimpleClass sc1() (x)
+      대신 다음과 같이 구성을 해야 한다.
+      SimpleClass sc1;  (o)
+      SimpleClass * ptr1 = new SimpleClass; (o)
+      SimpleClass * ptr2 = new SimpleClass(); (o)
+
+      왜 SimpleClass sc1() 이런 방식으로 생성자를 이용해서 객체를 생성할 수 없는 것인가?
+        -> SimpleClass sc1() {
+            SimpleClass sc(20, 30);
+            return sc;
+          }
+          함수가 있다고 가정을 하면 
+          SimpleClass sc1()이러한 표현은 함수의 원형을 선언한 것이다.
+          즉, 이 문장을 void형(인자를 받지 않는) 생성자의 호출문으로 인정해버리면, 컴파일러는 이러한 문장을 
+          만났을 때, 이것이 객체 생성문인지 함수의 원형 선언인지를 구분할 수 없게 된다. 
+          그래서 이러한 유형의 문장은 객체 생성이 아닌, 함수의 원형 선언에만 사용하기로 약속하였다.
+
+    
 
 
        
