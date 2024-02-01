@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Rectangle::Rectangle(const Point& upl, const Point& lowR) : upLeft(upl), lowRight(lowR) {
+Rectangle::Rectangle(const int& x1, const int& y1, const int& x2, const int& y2) : upLeft(x1, y1), lowRight(x2, y2) {
 
 }
 
