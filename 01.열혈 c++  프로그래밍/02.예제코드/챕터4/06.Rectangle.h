@@ -8,7 +8,7 @@ class Rectangle {
 	Point lowRight;
 
 public:
-	Rectangle(const Point& upl, const Point& lowR);
+	Rectangle(const int &x1, const int &y1, const int &x2, const int &y2);
 	void ShowRecInfo() const;
 };
 #endif
