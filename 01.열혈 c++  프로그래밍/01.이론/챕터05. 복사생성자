@@ -126,5 +126,13 @@
 
 6. 깊은 복사를 위한 복사 생성자의 정의 
   예시코드) ShallowCopyErrorClear.cpp
+  복사 생성자가 실행될 때, 만들어지는 객체와 복사의 대상이 되는 객체의 name이 각각의 다른 메모리를 가리키게 바꿔주면 문제가 해결된다.
 
-    
+  즉, 
+    Person(const Person& copy) : age(copy.age) {
+    	name = new char[strlen(copy.name) + 1];
+    	strcpy(name, copy.name);
+    }
+  복사생성자를 위와 같이 바꿔줬다.
+
+
