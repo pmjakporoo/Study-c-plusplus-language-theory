@@ -4,7 +4,11 @@
 복사 이후에 문제가 발생하지 않음을 다음 main함수를 통해서 확인한다. 
 
 int main(void) {
-
-
+  NameCard manClerk("Lee", "ABCEng", "010-1111-2222", COMP_POS::CLERK);
+  NameCard copy1(manClerk);
+  NameCard manSENIOR("Hone", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
+  NameCard copy2(manSENIOR);
+  copy1.ShowNameCardInfo();
+  copy2.ShowNameCardInfo();
   return 0;
 }
