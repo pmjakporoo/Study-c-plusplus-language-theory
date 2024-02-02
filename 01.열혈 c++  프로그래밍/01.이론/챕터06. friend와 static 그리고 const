@@ -8,3 +8,8 @@
     ex)
         void SimpleFunc() { ... }
         void SimpleFunc() const { ... }
+
+3. 클래스의 friend 선언
+  - A클래스가 B클래스를 대상으로 friend 선언을 하면, B클래스는 A클래스의 private 멤버에 직접 접근이 가능하다.
+  - 단, A클래스도 B클래스의 private 멤버에 직접 접근이 가능하려면, B클래스가 A클래스를 대상으로 friend 선언을 해줘야 한다.
+  - friend 선언은 클래스 내에 어디든 위치할 수 있다. private에 존재하든, public에 존재하든 상관없다.
