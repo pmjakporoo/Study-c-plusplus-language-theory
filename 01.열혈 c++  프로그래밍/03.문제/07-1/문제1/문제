@@ -1,0 +1,29 @@
+다음 클래스에 적절한 생성자를 삽입한다. 그리고 이의 확인을 위한 main함수를 적절히 정의한다.
+
+class Car {
+	int gasolineGauge;
+
+public:
+	int GetGasGauge() {
+		return gasolineGauge;
+	}
+};
+
+class HybridCar : public Car {
+	int electricGauge;
+public:
+	int GetElecGauge() {
+		return electricGauge;
+	}
+};
+
+class HybridWaterCar: public HybridCar {
+	int waterGauge;
+public:
+	void ShowCurrentGauge() {
+		cout << "잔여 가솔린: " << GetGasGauge() << endl;
+		cout << "잔여 전기량: " << GetElecGauge() << endl;
+		cout << "잔여 워터량: " << waterGauge << endl;
+	}
+};
+
