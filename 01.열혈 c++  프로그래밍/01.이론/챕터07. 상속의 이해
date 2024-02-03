@@ -109,4 +109,61 @@
   에제코드) DestModel.cpp
 
 9. protected로 선언된 멤버가 허용하는 접근의 범위 
-  - 
+  - c++의 접근 제어 지시자에는 private, protected, pubilc 3가지가 존재한다.
+    이들이 허용하는 접근의 범위에는 다음과 같다.
+    private < protected < public
+    즉, public이 허용하는 접근의 범위가 가장 넓고, private가 허용하는 접근의 범위가 가장 좁다.
+
+    protected ? 
+    - protected로 선언된 멤버변수는 이를 상속하는 유도 클래스에서 접근이 가능하다.
+      이것이 private와의 유일한 차이점이다.
+      유도 클래스에게만 제한적으로 접근을 허용한다는 측면에서 유용하게 사용될 수 있겠지만,
+      기본적으로 기초 클래스와 이를 상속하는 유도 클래스 사이에서도 정보은닉은 지켜지는 게 좋다.
+
+      ex)
+        class Base {
+          int num1;
+        protected:
+          int num2;
+        public:
+          int num3;
+          void ShowData() {
+            cout << num1 <<", " << num2 << ", " << num3;
+          }
+        }
+
+        class Derived : public Base {
+        public:
+          void ShowBaseMember() {
+            cout << num1; // 컴파일 에러
+            cout << num2; // 컴파일 OK
+            cout << num3; // 컴파일 OK
+          }
+        }
+
+10. 세가지 형태의 상속
+  - public 상속 : ex) class Derived: public Base { ... }
+  - protected 상속 : ex) class Derived: protected Base { ... }
+  - private 상속 : ex) class Derived: private Base { ... }
+    - protected보다 접근 범위가 넓은(public) 멤버는 protected로 변경시켜서 상속한다.
+    ex) 
+      class Base {
+        int num1;
+      protected:
+        int num2;
+      public: 
+        int num3;
+      }
+
+      class Derived: protected Base {
+        접근불가: 
+          int num1;
+        protected:
+          int num2;
+        protected:
+          int num3;
+      }
+
+      예시코드) ProtectedHeri.cpp
+        
+
