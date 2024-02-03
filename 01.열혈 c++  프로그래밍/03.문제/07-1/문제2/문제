@@ -1,0 +1,45 @@
+다음 두 클래스에 적절한 생성자와 소멸자를 정의한다.
+그리고 이의 확인을 위한 main함수를 정의한다.
+
+class MyFriendInfo {
+	char* name;
+	int age;
+
+public:
+	MyFriendInfo(const char* myname, int myage) : age(myage) {
+		name = new char[strlen(myname) + 1];
+		strcpy(name, myname);
+	}
+	void ShowMyFrinedInfo() {
+		cout << "이름: " << name << endl;
+		cout << "나이: " << age << endl;
+	}
+	~MyFriendInfo() {
+		delete[] name;
+	}
+};
+
+class MyFrinedDetailedInfo : public MyFriendInfo{
+	char* addr;
+	char* phone;
+public:
+	MyFrinedDetailedInfo(const char* myname, int myage, const char* myaddr, const char* myphone) :
+		MyFriendInfo(myname, myage) {
+		addr = new char[strlen(myaddr) + 1];
+		strcpy(addr, myaddr);
+
+		phone = new char[strlen(myphone) + 1];
+		strcpy(phone, myphone);
+
+	}
+	void ShowMyFrinedDetailInfo() {
+		ShowMyFrinedInfo();
+		cout << "주소: " << addr << endl;
+		cout << "전화: " << phone << endl;
+	}
+
+	~MyFrinedDetailedInfo() {
+		delete[] addr;
+		delete[] phone;
+	}
+};
