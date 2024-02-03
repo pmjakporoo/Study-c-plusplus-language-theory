@@ -1,0 +1,80 @@
+1. 상속이란?
+  철수는 아버지로부터 좋은 목소리와 큰 키를 물려받았다.(상속 받았다.)
+  따라서 철수는 자신이 지니고 있는 고유의 특성 이외에 아버지로부터 물려 받은 좋은 목소리와 큰 키라는 또 다른 특성을 
+  함께 지니게 되었다. 
+
+  UnivStudent 클래스가 Person 클래스를 상속 할 때,
+  UnivStudent 클래스는 Person 클래스가 지니고 있는 모든 멤버를 물려받는다.
+  즉, UnivStudent 객체에는 UnivStudent 클래스에 선언되어 있는 멤버뿐만 아니라, Person 클래스에 선언되어 있는
+  멤버도 존재하게 된다. 
+
+2. 상속의 방법과 그 결과
+  [Person.h]
+    #ifndef PERSON_HEADER 
+    #define PERSON_HEADER
+    
+    #include <iostream>
+    #include <cstring>
+    
+    using namespace std;
+    
+    class Person {
+    	int age;
+    	char name[50];
+    
+    public:
+    	Person(int myage, char* myname) : age(myage) {
+    		strcpy(name, myname);
+    	}
+    
+    	void WhatYourName() const {
+    		cout << "My name is " << name << endl;
+    	}
+    
+    	void HowOldAreYou() const {
+    		cout << "I'm " << age << " years old" << endl;
+    	}
+    };
+    #endif
+
+[UnivStudent.h]
+    #include "Person.h"
+    #ifndef UNIVSTUDENT_HEADER
+    #define UNIVSTUDENT_HEADER
+    
+    class UnivStudent : public Person {
+    	char major[50];
+    
+    public:
+    	UnivStudent(char* myname, int myage, char* mymajor):Person(myage, myname) {
+    		strcpy(major, mymajor);
+    	}
+    	void WhoAreYou() const {
+    		WhatYourName();
+    		HowOldAreYou();
+    		cout << "My major is " << major << endl;
+    	}
+    };
+    #endif
+
+  - UnivStudent 클래스가 Person 클래스를 상속 받았다.
+  - UnivStudent 클래스에는 WhatYourName(), HowOldAreYou()함수가 정의되어 있지 않음에도 불구하고,
+    이 두 함수를 호출 할 수 있는 이유는 UnivStudent 클래스가 Person 클래스를 상속했기 때문이다.
+    즉, 이 두 함수는 Person클래스의 멤버함수이기 때문에 호출이 가능하다.
+    그리고 이것이 상속의 가장 두드러진 특징이다.
+  
+  - UnivStudent 클래스의 생성자에서는 Person 클래스 및 자기 자신의 초기화에 책임을 져야 한다.
+    (UnivStudent 클래스의 생성자는 Person 클래스의 멤버까지 초기화해야 할 의무가 있다.)
+  
+  - UnivStudent 클래스의 생성자는, Person 클래스의 생성자를 호출해서 Person 클래스의 멤버를 초기화하는 것이 좋다.
+  -> 즉, UnivStudent클래스의 생성자는 자신이 상속한 Person 클래스의 멤버를 초기화할 의무를 지닌다.
+     그래서 UnivStudent의 생성자는 Person의 생성자를 호출하는 형태로 Person 클래스의 멤버를 초기화하는 것이 좋다.
+  
+  - UnivStudent 생성자의 매개변수를 보면 UnivStudent의 멤버뿐만 아니라, Person 멤버를 초기화 하기 위한 인자의 전달까지 요구하고 있다.
+    그리고 이어서, 이니셜라이저가 등장하는데, 이것이 의미하는 바는 생성자의 호출이다.
+    즉, Person 클래스의 생성자를 호출하면서 인자로 myage와 myname에 저장된 값을 전달하는 것이다.
+    이렇듯 UnivStudent 클래스와 같이 상속받는 클래스는 이니셜라이저를 이용해서 상속하는 클래스의 생성자 호출을 명시할 수 있다.
+
+3. 상속관련 완전한 예제의 확인 및 실행
+  예제코드) UnivStudentInheri.cpp
+    
