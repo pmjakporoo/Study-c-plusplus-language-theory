@@ -77,4 +77,19 @@
 
 3. 상속관련 완전한 예제의 확인 및 실행
   예제코드) UnivStudentInheri.cpp
-    
+  - UnivStudent 클래스의 멤버함수(또는 생성자) 내에서는 Person 클래스에 private로 선언된 멤버변수 age와 name에 직접 접근이 불가하다.
+    왜냐하면 private 접근제한의 기준은 클래스 내부에 존재하는지 이기 떄문이다. 즉, 클래스 외부에서는 접근이 불가하다.
+    따라서 UnivStudent의 멤버함수 내에서는 Person의 멤버변수에 직접 접근이 불가하다.
+    따라서 Person 클래스에 정의된 public 함수를 통해서 간접적으로 접근을 해야 한다.
+    이렇듯, 정보의 은닉은 하나의 객체(UnivStudent 객체) 내에서도 진행이 된다.
+
+4. 용어의 정리 
+  - Person         <-->         UnivStudent 
+    상위 클래스                  하위 클래스
+    기초(base) 클래스            유도(detrived) 클래스
+    슈퍼(super) 클래스           서브(sub) 클래스
+    부모 클래스                  자식 클래스
+
+5. 유도 클래스의 객체 생성과정
+  - 예제코드) DerivCreOrder.cpp
+
