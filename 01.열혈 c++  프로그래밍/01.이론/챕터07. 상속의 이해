@@ -143,8 +143,10 @@
 
 10. 세가지 형태의 상속
   - public 상속 : ex) class Derived: public Base { ... }
+    - public보다 접근의 범위가 넓은 멤버는 public으로 변경시켜서 상속하겠다.
+      즉, private를 제외한 나머지는 그냥 그대로 상속한다.
+      private멤버는 접근 불가의 형태로 상속을 하지만, protected 멤버는 protected로, public 멤버는 public으로 상속이 진행된다.
   - protected 상속 : ex) class Derived: protected Base { ... }
-  - private 상속 : ex) class Derived: private Base { ... }
     - protected보다 접근 범위가 넓은(public) 멤버는 protected로 변경시켜서 상속한다.
     ex) 
       class Base {
@@ -166,4 +168,35 @@
 
       예시코드) ProtectedHeri.cpp
         
+  - private 상속 : ex) class Derived: private Base { ... }
+    - private 보다 접근의 범위가 넓은 멤버는 private로 변경시켜서 상속한다.
+     ex) 
+      class Base {
+        int num1;
+      protected:
+        int num2;
+      public: 
+        int num3;
+      }
 
+      class Derived: private Base {
+        접근불가: 
+          int num1;
+        private:
+          int num2;
+        private:
+          int num3;
+      }
+
+      -> 때문에 num2, num3은 Derived 클래스 내에서만 접근이 가능한 멤버가 된다.
+         그리고 다른 클랫스가 이 클래스를 다음과 같이 상속한다면,
+         class DeDerived: public Derived {
+            접근불가: 
+              int num1;
+            접근불가: 
+              int num2;
+            접근불가: 
+              int num3;
+         }
+          -> 이렇듯, private 상속이 이뤄진 클래스를 다시 상속할 경우, 멤버함수를 포함하여 모든 멤버가 접근 불가가 되기 때문에 
+             사실상 의미없는 상속이 되고 만다.
