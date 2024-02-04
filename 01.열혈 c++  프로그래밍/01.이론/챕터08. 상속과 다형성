@@ -110,3 +110,68 @@
  -  PermanentWorker 클래스의 ShowSalaryInfo 함수 내에서 호출되는 GetPay함수는  PermanentWorker 클래스에 정의된 GetPay
     함수의 호출로 이어진다. 따라서, SalesWorker 클래스에서 정의된 GetPay 함수가 호출되도록 SalesWorker 클래스에 별도의
     ShowSalaryInfo 함수를 정의해야만 한다.
+
+4. 기초클래스의 포인터로 객체를 참조하면
+ - c++ 컴파일러는 포인터 연산의 가능성 여부를 판단할 때, 포인터의 자료형을 기준으로 판단하지, 실제 가리키는 객체의 자료형을 기준으로 판단하지 않는다.
+ - 유도 클래스는 기초 클래스의 유도 클래스니까 기초 클래스의 포인터 변수로 유도 객체의 참조가 가능하다.
+ - 유도 클래스의 포인터 변수가 가리키는 객체는 분명 기초 클래스를 직접 혹은 간접적으로 상속하는 객체이다.
+   그러니 기초클래스 형 포인터 변수로도 참조가 가능하다.
+
+   예시코드)
+   #include <iostream>
+   using namespace std;
+
+   class First {
+     public:
+	void FirstFunc() {
+		cout << "FirstFunc" << endl;
+	}
+   };
+
+   class Second: public First {
+     public:
+	void SecondFunc() {
+		cout << "SecondFunc" << endl;
+	}
+    };
+
+    class Third : public Second {
+      public:
+	void ThirdFunc() {
+		cout << "ThirdFunc" << endl;
+	}
+    };
+
+    int main(void) {
+	Third* tptr = new Third();
+	Second* sptr = tptr;
+	First* fptr = sptr;
+	...
+	return 0;
+    }
+    - Third형 포인터 변수 tptr이 가리키는 객체는 무조건 Second형 포인터 변수 sptr도 가리킬 수 있으므로, 그리고
+      Second형 포인터 변수 sptr이 가리키는 객체는 무조건 First형 포인터 변수 fptr도 가리킨 수 있으므로, 위의 코드
+      에서는 컴파일 오류가 발생하지 않는다. 그러나 객체를 참조하는 포인터의 형에 따라서 호출할 수 있는 함수의 종류에는 
+      다음과 같이 제한이 따른다.
+
+      int main(void) {
+	Third* tptr = new Third();
+	Second* sptr = tptr;
+	First* fptr = sptr;
+	
+	tptr->FirstFunc();   (o)
+	tptr->SecondFunc();  (o)
+	tptr->ThirdFunc();   (o)
+
+	sptr->FirstFunc();   (o)
+	sptr->SecondFunc();  (o)
+	stpr->ThirdFunc();   (x)
+
+	fptr->FirstFunc();   (o)
+	fptr->SecondFunc();  (x)
+	fptr->ThirdFunc();   (x)
+
+	return 0;
+      }
+    - 즉, 포인터 형에 해당하는 클래스에 정의된 멤버에만 접근이 가능하다.
+
