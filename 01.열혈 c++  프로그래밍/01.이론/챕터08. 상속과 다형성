@@ -36,5 +36,74 @@
   - 영업직의 급여 : 기본급여(월 기본급여) + 인센티브 형태
   - 임시직의 급여 : 시간당 급여 X 일한 시간의 형태
 
+  - 임시직에 해당하는 클래스 
+    class TemporaryWorker : public Employee {
+    	int workTime;
+    	int payPerHour;
+    public:
+    	TemporaryWorker(const char* name, int pay) : Employee(name), workTime(0), payPerHour(pay) {}
+    	void AddWorkTime(int time) {
+    		workTime += time;
+    	}
+    	int GetPay() const {
+    		return workTime * payPerHour;
+    	}
+    	void ShowSalaryInfo() const {
+    		ShowYourName();
+    		cout << "Salary: " << GetPay() << endl << endl;
+    	}
+    }
 
+  - 영업직에 해당하는 클래스
+    (영업직은 정규직의 일종이다. 따라서 PermanentWorker 클래스를 상속한다.)
+  class SalesWorker : public ParmanentWorker {
+  	int salesResult;
+  	double bounsRatio;
 
+  public:
+  	SalesWorker(const char* name, int money, double ratio):
+  		PermanentWorker(name, money), salesResult(0), bounsRatio(ratio) {}
+  	void AddSalesResult(int value) {
+  		salesResult += value;
+  	}
+  	int GetPay() const {
+  		return ParmanentWorker::GetPay() + (int)salesResult * bounsRatio;
+  	}
+  	void ShowSalaryInfo() const {
+  		ShowYourName();
+  		cout << "salary: " << GetPay() << endl << endl;
+  	}
+  };
+
+  - 다음은 main 함수의 일부분이다. 
+  int main(void) {
+	  SalesWorker seller("Hong", 1000, 0.1);
+	  cout << seller.GetPay() << endl; // SalesWorker 클래스의 GetPay()함수가 호출된다. 
+	  seller.ShowSalaryInfo(); // SalesWorker 클래스의 ShowSalaryInfo()함수가 호출된다.
+	  ...
+  }
+
+2-1. 오버라이딩
+  - PermanentWorker 클래스의 GetPay() 함수와 ShowSalaryInfo() 함수가 있는데, 유도 클래스인 
+    SalesWorker 클래스에도 동일한 이름과 형태로 두 함수를 정의하였다.
+    이를 가리켜 함수 오버라이딩이라 한다. 이렇게 함수가 오버라이딩이 되면, 
+    오버라이딩 된 기초 클래스의 함수는, 오버라이딩을 한 유도 클래스의 함수에 가려진다.
+    그래서 SalesWorker 클래스 내에서 GetPay()함수를 호출하면, SalesWorker 클래스에 정의된 GetPay() 함수가 호출된다.
+
+ - SalesWorker클래스 내의 ParmanentWorker::GetPay()는 
+    오버라이딩 된 기초 클래스의 GetPay()함수를 호출하는 구문이다.
+    이렇듯, 클래스의 이름을 명시함으로 인해서 기초 클래스의 오버라이딩 된 함수를 호출할 수 있다.
+
+    그리고 다음의 형태로도 호출이 가능하다.
+    int main(void) {
+      SalesWorker seller("Hong", 1000, 0.1);
+      cout << seller.PermanentWorker::GetPay() << endl;
+      seller.PermanentWorker::ShowSalaryInfo();
+    }
+
+참고. 함수 오버라이딩 vs 함수 오버로딩
+  기초 클래스와 동일한 이름의 함수를 유도 클래스에서 저의한다고 해서 무조건 함수 오버라이딩이 되는 것은 아니다.
+  매개변수의 자료형 및 개수가 다르면, 이는 함수 오버로딩이 되어, 전달되는 인자에 따라서 호출되는 함수가 결정된다.
+  즉, 함수 오버로딩은 상속 관계에서도 구성이 될 수 있다.
+
+    
