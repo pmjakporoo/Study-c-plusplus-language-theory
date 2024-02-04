@@ -1,0 +1,26 @@
+책을 의미하는 Book클래스와 전자책을 의미하는 Ebook 클래스를 정의하고자 한다.
+이 둘의 관계는 IS-A관계가 성립한다. (전자책은 책이다.)
+
+class Book {
+  char * title;
+  char * isbn;
+  int price;
+  ...
+}
+
+class EBook : pubilc Book {
+  char * DRMkey;
+  ...
+}
+
+----------------------
+[main함수]
+
+int main(void) {
+  Book book("좋은 c++", "555-12345-890-0", 20000);
+  book.ShowBookInfo();
+  cout << endl;
+  EBook ebook("좋은 c++ ebook", "555-12345-890-1", 10000, "fdx9w0i8kiw");
+  ebook.ShowEBookInfo();
+  return 0;
+}
