@@ -54,7 +54,7 @@ public:
 	void AddSalesResult(int value) {
 		salesResult += value;
 	}
-	int Getpay() const {
+	int GetPay() const {
 		return PermanentWorker::GetPay() + (int)(salesResult * bounsRatio);
 	}
 	void ShowSalaryInfo() const {
