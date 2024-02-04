@@ -26,5 +26,15 @@
     - Student 객체와 PartTimeStudent 객체를 Person 객체의 일종으로 간주한다.
     - PartTimeStudent 객체도 Student 객체의 일종으로 간주한다.
 
-2. 
+2. '오렌지미디어 급여 관리 확장성 문제'의 1차적 해결과 함수 오버라이딩
+  예제코드) EmployeeManager2.cpp
+  - EmployeeHandler 갹체가 여전히 PermanentWorker 객체를 저장 및 관리하고 있다.
+
+  이러한 상황에서 다음 상황을 추가한다.
+  - 정규직, 영업직, 임시직 모두 고용의 한 형태이다.
+  - 영업직은 정규직의 일종이다.
+  - 영업직의 급여 : 기본급여(월 기본급여) + 인센티브 형태
+  - 임시직의 급여 : 시간당 급여 X 일한 시간의 형태
+
+
 
