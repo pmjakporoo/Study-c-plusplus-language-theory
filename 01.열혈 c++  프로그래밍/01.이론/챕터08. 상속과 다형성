@@ -251,3 +251,39 @@
    예제코드) FunctionVirtualOverride.cpp
    - 함수가 가상함수로 선언되면, 해당 함수 호출 시, 포인터의 자료형을 기반으로 호출 대상을 결정하지 않고,
      포인터 변수가 실제로 가리키는 객체를 참조하여 호출의 대상을 결정한다.
+
+7. 오렌지미디어 급여관리 확장성 문제의 완전한 해결
+	class EmployHandler {
+		Employee* empList[50];
+		int empNum;
+	public:
+		EmployHandler() : empNum(0) {}
+		void AddEmployee(Employee* emp) {
+			empList[empNum++] = emp;
+		}
+		void ShowTotalSalary() const {
+			int sum = 0;
+			/*
+			for(int i = 0; i < empNum; i++) {
+				sum += empList[i]->GetPay();
+			}
+			*/
+			cout << "salary sum: " << sum << endl;
+		}
+		void ShowAllSalaryInfo() const {
+			/*
+			for(int i = 0; i < empNum; i++) {
+				empList[i]->ShowSalaryInfo();
+			}
+			*/
+		}
+		~EmployHandler() {
+			for (int i = 0; i < empNum; i++) {
+				delete empList[i];
+			}
+		}
+	};
+
+ - 주석을 해제했을 때 에러가 나지 않을려면 Employee형 포인터 변수를 대상으로 GetPay, ShowSalaryInfo 함수를 호출 할 수 있도록 해야 한다.
+   그리고 이를 위해서는 Employee 클래스에 GetPay함수와 ShowSalaryInfo 함수를 추가로 정의하고, 이를 가상함수로 선언하면 된다.
+   예제코드) EmployeeManager4.cpp
