@@ -174,4 +174,35 @@
 	return 0;
       }
     - 즉, 포인터 형에 해당하는 클래스에 정의된 멤버에만 접근이 가능하다.
-
+      따라서 EmployeeManager3.cpp예제코드에서 아래 클래스에서 주석을 풀면 왜 에러가 나는지 설명할 수 있다.
+      (Employee 클래스 포인터 형에 해당하는 클래스에 정의된 멤버에 GetPay(), ShowSalaryInfo()가 없다.)
+	class EmployHandler {
+		Employee* empList[50];
+		int empNum;
+	public:
+		EmployHandler() : empNum(0) {}
+		void AddEmployee(Employee* emp) {
+			empList[empNum++] = emp;
+		}
+		void ShowTotalSalary() const {
+			int sum = 0;
+			/*
+			for(int i = 0; i < empNum; i++) {
+				sum += empList[i]->GetPay();
+			}
+			*/
+			cout << "salary sum: " << sum << endl;
+		}
+		void ShowAllSalaryInfo() const {
+			/*
+			for(int i = 0; i < empNum; i++) {
+				empList[i]->ShowSalaryInfo();
+			}
+			*/
+		}
+		~EmployHandler() {
+			for (int i = 0; i < empNum; i++) {
+				delete empList[i];
+			}
+		}
+	};
