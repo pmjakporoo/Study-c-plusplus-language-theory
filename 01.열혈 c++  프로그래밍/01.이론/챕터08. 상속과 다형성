@@ -23,3 +23,8 @@
   - 즉, C++에서 AAA형 포인터 변수는 AAA 객체 또는 AAA를 직접 혹은 간접적으로 상속하는 모든 객체를 가리킬 수 있다.
     (객체의 주소값을 저장할 수 있다.)
     예제코드) ObjectPointer.cpp
+    - Student 객체와 PartTimeStudent 객체를 Person 객체의 일종으로 간주한다.
+    - PartTimeStudent 객체도 Student 객체의 일종으로 간주한다.
+
+2. 
+
