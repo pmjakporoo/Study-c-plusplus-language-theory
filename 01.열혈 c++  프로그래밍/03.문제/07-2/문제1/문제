@@ -1,0 +1,21 @@
+정사각형을 의미하는 Square 클래스와 직사각형을 의미하는 Rectangle 클래스를 정의하고자 한다.
+그런데 정사각형은 직사각형의 일종이므로(IS-A 관계가 성립한다.), 다음의 형태로 클래스의 상속관계를 구성하고자 한다.
+
+class Rectangle {
+  ...
+};
+
+class Square: public Rectangle {
+  ...
+};
+
+이에 다음 main함수와 함께 실행이 가능하도록 위의 클래스를 완성한다.
+
+int main(void) {
+  Rectangle rec(4,3);
+  rec.ShowAreaInfo();
+
+  Square sqr(7);
+  sqr.ShowAreaInfo();
+  return 0;
+}
