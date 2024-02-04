@@ -106,5 +106,7 @@
   매개변수의 자료형 및 개수가 다르면, 이는 함수 오버로딩이 되어, 전달되는 인자에 따라서 호출되는 함수가 결정된다.
   즉, 함수 오버로딩은 상속 관계에서도 구성이 될 수 있다.
 
-
-    
+3. SalesWorker 클래스에서 ShowSalaryInfo 함수를 오버라이딩 한 이유는?
+ -  PermanentWorker 클래스의 ShowSalaryInfo 함수 내에서 호출되는 GetPay함수는  PermanentWorker 클래스에 정의된 GetPay
+    함수의 호출로 이어진다. 따라서, SalesWorker 클래스에서 정의된 GetPay 함수가 호출되도록 SalesWorker 클래스에 별도의
+    ShowSalaryInfo 함수를 정의해야만 한다.
