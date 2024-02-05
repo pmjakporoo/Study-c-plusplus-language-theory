@@ -324,5 +324,36 @@
   그리고 이렇듯 하나 이상의 멤버함수를 순수 가상함수로 선언한 클래스를 가리켜 추상클래스라 한다.
   이는 완전하지 않은, 그래서 객체 생성이 불가능한 클래스라는 의미를 지닌다.
 
+10. 다형성
+ - 다형성이란 문장은 같은데 결과는 다른 것이다.
+   ex)
 
+   class First {
+   public: 
+	virtual void SimpleFunc() {
+	    cout << "First" << endl;
+	}
+   }
+
+   class Sesond {
+   public:
+	virtual void SimpleFunc() {
+		cout << "Second" << endll
+	}
+   }
+
+   First * ptr = new First();
+   ptr -> SimpleFunc();
+   delte ptr;
+
+   ptr = new Sesond();
+   ptr -> SimpleFunc();
+   delte ptr;
    
+   -> 두번의  ptr -> SimpleFunc();이 실행됐는데 
+      이 두번의 실행결과가 서로 다르다.
+      포인터 변수 ptr이 참조하는 객체의 자료형이 다르기 때문이다.
+      이것이 바로 c++에서의 다형성의 예이다.
+
+11. 가상 소멸자와 참조자의 참조 가능성
+ 
